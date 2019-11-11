@@ -11,9 +11,11 @@ node ('Ubuntu-app-agent'){
     }
      stage('Post-to-dockerhub') {
     
-     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-            app.push("latest")
-        			}
+     stage('Post-to-dockerhub') {
+
+            registry = "191006/erick_public-repo"
+            registryCredential = ‘dockerhub’
+         }
     }
     
     stage('Pull-image-server') {
