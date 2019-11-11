@@ -9,14 +9,12 @@ node ('Ubuntu-app-agent'){
          * docker build on the command line */
         app = docker.build("amrit96/snake")
     }
-     stage('Post-to-dockerhub') {
-    
+   
      stage('Post-to-dockerhub') {
 
             registry = "191006/erick_public-repo"
          }
-    }
-    
+       
     stage('Pull-image-server') {
     
          sh "docker-compose down"
