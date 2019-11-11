@@ -12,7 +12,7 @@ node ('Ubuntu-app-agent'){
    
      stage('Post-to-dockerhub') {
 
-            registry = "191006/erick_public-repo"
+            registry = "191006/erick_public-repo:Snake_app"
          }
        
     stage('Pull-image-server') {
