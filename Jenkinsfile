@@ -9,21 +9,6 @@ node ('Ubuntu-app-agent'){
          * docker build on the command line */
         app = docker.build("amrit96/snake")
     }
-    stage('Post-to-dockerhub') {
-    
-     docker.withRegistry('https://registry.hub.docker.com', 'training_creds') {
-            app.push("latest")
-        			}
-         }
-    stage('SECURITY-IMAGE-SCANNER'){
-        build 'SECURITY-IMAGE-SCANNER-AQUAMICROSCANNER'
-    } 
-    
-    stage('Pull-image-server') {
-    
-         sh "docker-compose down"
-         sh "docker-compose up -d"	
-      }
  }
 
 // a standalone single line comment here
