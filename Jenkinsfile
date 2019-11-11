@@ -14,7 +14,6 @@ node ('Ubuntu-app-agent'){
      stage('Post-to-dockerhub') {
 
             registry = "191006/erick_public-repo"
-            registryCredential = ‘dockerhub’
          }
     }
     
