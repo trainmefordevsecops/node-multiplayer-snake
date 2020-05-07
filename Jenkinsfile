@@ -4,6 +4,10 @@ node ('appserver'){
        checkout scm
     }  
     
+    stage('Running Snyk') {
+    snykSecurity severity: 'high', snykInstallation: 'SnykV2PluginTest', snykTokenId: 'snyktoken'
+     } 
+    
     stage('Build-and-Tag') {
         app = docker.build("mikebroomfield/snake")
     }
