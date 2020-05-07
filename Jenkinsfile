@@ -5,7 +5,7 @@ node ('appserver'){
     }  
     
     stage('Running Snyk') {
-    snykSecurity severity: 'high', snykInstallation: 'SnykV2PluginTest', snykTokenId: 'snyktoken'
+   snykSecurity failOnIssues: false, snykInstallation: 'SnykV2PluginTest', snykTokenId: 'snyktoken'
      } 
     
     stage('Build-and-Tag') {
