@@ -19,12 +19,15 @@ node ('appserver'){
          }
     
      stage('Trivy Scan') {
-         sh "VERSION=$(
-         curl --silent "https://api.github.com/repos/aquasecurity/trivy/releases/latest" | \
-         grep '"tag_name":' | \
-         sed -E 's/.*"v([^"]+)".*/\1/'
-         )"
-         sh "echo $VERSION"	
+        
+       sh "apt-get install wget apt-transport-https gnupg"
+       sh "wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | apt-key add -"
+       sh "echo deb https://aquasecurity.github.io/trivy-repo/deb bionic main | tee -a /etc/apt/sources.list.d/trivy.list"
+       sh "apt-get update"
+       sh "apt-get install -y trivy"
+       sh "trivy --help"
+         
+ 
       }
   
     stage('Pull-image-server') {
