@@ -19,8 +19,10 @@ node ('appserver'){
  //        }
     
      stage('Trivy Scan') {
-         docker.image('aquasec/trivy').withRun('--rm -v $WORKSPACE/cache:/root/.cache/ aquasec/trivy python:3.4-alpine') { c ->
-    }
+         sh "export VERSION=0.6.0"
+         sh "echo $VERSION"
+         sh "wget https://github.com/aquasecurity/trivy/releases/download/v${VERSION}/trivy_${VERSION}_Linux-64bit.tar.gz"
+         
  
       }
   
