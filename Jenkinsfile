@@ -19,7 +19,7 @@ node ('appserver'){
  //        }
     
      stage('Trivy Scan') {
-         docker.image('mysql:5').withRun('--rm -v $WORKSPACE/cache:/root/.cache/ aquasec/trivy python:3.4-alpine') { c ->
+         docker.image('aquasec/trivy').withRun('--rm -v $WORKSPACE/cache:/root/.cache/ aquasec/trivy python:3.4-alpine') { c ->
     }
  
       }
