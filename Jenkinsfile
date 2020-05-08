@@ -4,30 +4,28 @@ node ('appserver'){
        checkout scm
     }  
     
-    stage('Running Snyk') {
-   snykSecurity failOnIssues: false, snykInstallation: 'SnykV2PluginTest', snykTokenId: 'snyktoken'
-     } 
+   // stage('Running Snyk') {
+  // snykSecurity failOnIssues: false, snykInstallation: 'SnykV2PluginTest', snykTokenId: 'snyktoken'
+  //   } 
     
-    stage('Build-and-Tag') {
-        app = docker.build("mikebroomfield/snake")
-    }
+ //stage('Build-and-Tag') {
+ //      app = docker.build("mikebroomfield/snake")
+ //  }
     
-    stage('Post-to-dockerhub') {
-     docker.withRegistry('https://registry.hub.docker.com', 'dockercreds') {
-            app.push("latest")
-        			}
-         }
+ //   stage('Post-to-dockerhub') {
+  //   docker.withRegistry('https://registry.hub.docker.com', 'dockercreds') {
+ //           app.push("latest")
+ //       			}
+ //        }
     
      stage('Trivy Scan') {
-        
-       sh "docker run --rm -v $WORKSPACE:/root/.cache/ aquasec/trivy python:3.4-alpine"
-
-         
+         docker.image('mysql:5').withRun('--rm -v $WORKSPACE/cache:/root/.cache/ aquasec/trivy python:3.4-alpine') { c ->
+    }
  
       }
   
-    stage('Pull-image-server') {
-         sh "docker-compose down"
-         sh "docker-compose up -d"	
-      }
+//    stage('Pull-image-server') {
+//         sh "docker-compose down"
+//         sh "docker-compose up -d"	
+//      }
 }
