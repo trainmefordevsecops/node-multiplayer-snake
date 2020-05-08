@@ -17,6 +17,15 @@ node ('appserver'){
             app.push("latest")
         			}
          }
+    
+     stage('Trivy Scan') {
+         sh "VERSION=$(
+         curl --silent "https://api.github.com/repos/aquasecurity/trivy/releases/latest" | \
+         grep '"tag_name":' | \
+         sed -E 's/.*"v([^"]+)".*/\1/'
+         )"
+         sh "echo $VERSION"	
+      }
   
     stage('Pull-image-server') {
          sh "docker-compose down"
