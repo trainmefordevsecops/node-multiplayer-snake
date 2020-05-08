@@ -20,12 +20,8 @@ node ('appserver'){
     
      stage('Trivy Scan') {
         
-       sh "apt-get install wget apt-transport-https gnupg"
-       sh "wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | apt-key add -"
-       sh "echo deb https://aquasecurity.github.io/trivy-repo/deb bionic main | tee -a /etc/apt/sources.list.d/trivy.list"
-       sh "apt-get update"
-       sh "apt-get install -y trivy"
-       sh "trivy --help"
+       sh "docker run --rm -v $WORKSPACE:/root/.cache/ aquasec/trivy python:3.4-alpine"
+
          
  
       }
