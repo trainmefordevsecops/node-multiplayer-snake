@@ -21,7 +21,8 @@ node ('appserver'){
      stage('Trivy Scan') {
          sh "wget https://github.com/aquasecurity/trivy/releases/download/v0.6.0/trivy_0.6.0_Linux-64bit.tar.gz"
          sh "tar -zxvf trivy_0.6.0_Linux-64bit.tar.gz"
-         sh "./trivy --no-progress --clear-cache --exit-code 1 --severity HIGH,CRITICAL python:3.4-alpine"
+         sh "./trivy --clear-cache"
+         sh "./trivy --no-progress --exit-code 1 --severity HIGH,CRITICAL python:3.4-alpine"
          
  
       }
