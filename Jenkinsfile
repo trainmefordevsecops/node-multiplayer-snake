@@ -8,6 +8,7 @@ node ('appserver'){
    snykSecurity failOnIssues: false, snykInstallation: 'SnykV2PluginTest', snykTokenId: 'snyktoken'
      } 
     
+    /*
  stage('Build-and-Tag') {
        app = docker.build("mikebroomfield/snake")
    }
@@ -31,4 +32,6 @@ node ('appserver'){
          sh "docker-compose down"
          sh "docker-compose up -d"	
       }
+    
+    */
 }
