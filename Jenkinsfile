@@ -5,7 +5,10 @@ node ('appserver'){
     }  
     
     stage('Running Snyk') {
-   snykSecurity failOnIssues: false, snykInstallation: 'SnykV2PluginTest', snykTokenId: 'snyktoken'
+   // snykSecurity failOnIssues: false, snykInstallation: 'SnykV2PluginTest', snykTokenId: 'snyktoken'
+        
+        sh "snyk test --json"
+        sh "snyk monitor --json"
      } 
     
     /*
