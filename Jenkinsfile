@@ -8,7 +8,7 @@ node ('appserver'){
    // snykSecurity failOnIssues: false, snykInstallation: 'SnykV2PluginTest', snykTokenId: 'snyktoken'
         
         sh "snyk test --json"
-        sh "snyk monitor --json"
+        sh "snyk test --docker python:3.4-alpine"
      } 
     
     /*
