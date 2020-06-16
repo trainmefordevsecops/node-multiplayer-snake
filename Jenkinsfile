@@ -9,7 +9,7 @@ node ('ubuntu-slave'){
    }
     
     stage('Push') {
-     docker.withRegistry('https://registry.hub.docker.com') {
+     docker.withRegistry('https://registry.hub.docker.com', 'docker-creds') {
             app.push("latest")
         			}
          }
