@@ -1,40 +1,28 @@
-node ('appserver'){  
+node ('ubuntu-slave'){  
     def app
     stage('Cloning Git') {
        checkout scm
     }  
     
-    stage('Running Snyk') {
-   // snykSecurity failOnIssues: false, snykInstallation: 'SnykV2PluginTest', snykTokenId: 'snyktoken'
-        
-        sh "snyk test --json"
-        sh "snyk test --docker python:3.4-alpine"
-     } 
-    
-    /*
- stage('Build-and-Tag') {
+ stage('Build') {
        app = docker.build("mikebroomfield/snake")
    }
     
-    stage('Post-to-dockerhub') {
-     docker.withRegistry('https://registry.hub.docker.com', 'dockercreds') {
+    stage('Push') {
+     docker.withRegistry('https://registry.hub.docker.com', 'docker-creds') {
             app.push("latest")
         			}
          }
     
      stage('Trivy Scan') {
-         sh "wget https://github.com/aquasecurity/trivy/releases/download/v0.6.0/trivy_0.6.0_Linux-64bit.tar.gz"
-         sh "tar -zxvf trivy_0.6.0_Linux-64bit.tar.gz"
-         sh "./trivy --clear-cache"
-         sh "./trivy --no-progress --exit-code 0 --severity HIGH,CRITICAL python:3.4-alpine"
-         
- 
+
+         echo "running trivy"
+         sh "trivy --no-progress --exit-code 0 --severity HIGH,CRITICAL python:3.4-alpine"
       }
   
-    stage('Pull-image-server') {
+    stage('Pull') {
          sh "docker-compose down"
          sh "docker-compose up -d"	
       }
-    
-    */
+
 }
