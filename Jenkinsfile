@@ -4,11 +4,11 @@ node ('appserver'){
        checkout scm
     }  
     
- stage('Build-and-Tag') {
+ stage('Build') {
        app = docker.build("mikebroomfield/snake")
    }
     
-    stage('Post-to-dockerhub') {
+    stage('Push') {
      docker.withRegistry('https://registry.hub.docker.com') {
             app.push("latest")
         			}
@@ -21,7 +21,7 @@ node ('appserver'){
  
       }
   
-    stage('Pull-image-server') {
+    stage('Pull') {
          sh "docker-compose down"
          sh "docker-compose up -d"	
       }
