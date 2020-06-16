@@ -1,4 +1,4 @@
-node ('appserver'){  
+node ('ubuntu-slave'){  
     def app
     stage('Cloning Git') {
        checkout scm
