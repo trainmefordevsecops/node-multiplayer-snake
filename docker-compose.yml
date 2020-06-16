@@ -5,6 +5,6 @@ services:
     environment:
       - "PORT:3000"
     ports:
-      - "80:3000"
+      - "8080:3000"
     volumes:
       - ./:/app
