@@ -1,7 +1,7 @@
 version: '2'
 services:
   snake:
-    image: 'amrit96/snake'
+    image: 'mikebroomfield/snake'
     environment:
       - "PORT:3000"
     ports:
