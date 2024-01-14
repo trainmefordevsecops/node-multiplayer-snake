@@ -1,4 +1,5 @@
-'use strict';
+#node_app
+'use strict'; 
 
 const ServerConfig = require('../configs/server-config');
 
