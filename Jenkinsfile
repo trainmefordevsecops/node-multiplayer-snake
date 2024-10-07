@@ -12,7 +12,7 @@ node ('hw_ubuntu'){
     stage('Build-and-Tag') {
     /* This builds the actual image; synonymous to
          * docker build on the command line */
-        app = docker.build("dv544/snake")
+        app = docker.build("dv544/snake:latest")
     }
     stage('Post-to-dockerhub') {
     
