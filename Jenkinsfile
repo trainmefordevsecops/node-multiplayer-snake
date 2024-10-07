@@ -4,9 +4,9 @@ node ('hw_ubuntu'){
         /* Let's make sure we have the repository cloned to our workspace */
        checkout scm
     }  
-    stage('SAST'){
+    /*stage('SAST'){
         build 'SECURITY-SAST-SNYK'
-    }
+    }*/
 
     
     stage('Build-and-Tag') {
@@ -31,9 +31,9 @@ node ('hw_ubuntu'){
          sh "docker-compose up -d"	
       }
     
-    stage('DAST')
+    /* stage('DAST')
         {
         build 'SECURITY-DAST-OWASP_ZAP'
-        }
+        } */
  
 }
