@@ -4,9 +4,9 @@ node ('hw_ubuntu'){
         /* Let's make sure we have the repository cloned to our workspace */
        checkout scm
     }  
-    /*stage('SAST'){
+    stage('SAST'){
         build 'SECURITY-SAST-SNYK'
-    }*/
+    }
 
     
     stage('Build-and-Tag') {
