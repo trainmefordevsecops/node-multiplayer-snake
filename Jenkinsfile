@@ -33,9 +33,9 @@ node ('hw_ubuntu'){
          sh "docker-compose up -d"	
       }
     
-    /* stage('DAST')
+    stage('DAST')
         {
         build 'SECURITY-DAST-OWASP_ZAP'
-        } */
+        }
  
 }
