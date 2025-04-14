@@ -1,4 +1,4 @@
-node ('Ubuntu-app-agent'){  
+node ('docker-host-server'){
     def app
     stage('Cloning Git') {
         /* Let's make sure we have the repository cloned to our workspace */
@@ -12,11 +12,11 @@ node ('Ubuntu-app-agent'){
     stage('Build-and-Tag') {
     /* This builds the actual image; synonymous to
          * docker build on the command line */
-        app = docker.build("amrit96/snake")
+        app = docker.build("bruno101/snake")
     }
     stage('Post-to-dockerhub') {
     
-     docker.withRegistry('https://registry.hub.docker.com', 'training_creds') {
+     docker.withRegistry('https://registry.hub.docker.com', 'train_creds') {
             app.push("latest")
         			}
          }
